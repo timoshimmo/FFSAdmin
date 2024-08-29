@@ -11,7 +11,7 @@ import { withTranslation } from "react-i18next";
 const HorizontalLayout = (props: any) => {
     const [isMoreMenu, setIsMoreMenu] = useState(false);
     const navData = navdata().props.children;
-    let menuItems = [];
+    let menuItems: any[] = [];
     let splitMenuItems: any = [];
     let menuSplitContainer = 6;
     navData.forEach(function (value: any, key: number) {
@@ -28,7 +28,11 @@ const HorizontalLayout = (props: any) => {
             menuItems.push(value);
         }
     });
+
+    /*
     menuItems.push({ id: 'more', label: 'More', icon: 'ri-briefcase-2-line', link: "/#", stateVariables: isMoreMenu, subItems: splitMenuItems, click: function (e: any) { e.preventDefault(); setIsMoreMenu(!isMoreMenu); }, });
+
+    */
 
     useEffect(() => {
         window.scrollTo({ top: 0, behavior: 'smooth' });

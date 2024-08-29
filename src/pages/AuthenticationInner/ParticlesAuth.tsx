@@ -24,7 +24,7 @@ const ParticlesAuth = ({ children }: any) => {
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="text-center">
-                                    <p className="mb-0 text-muted">&copy; {new Date().getFullYear()} Bazara Inc. Developed by InEdge</p>
+                                    <p className="mb-0 text-muted">&copy; {new Date().getFullYear()} Future of Financial Services. Developed by INEDGE</p>
                                 </div>
                             </div>
                         </div>

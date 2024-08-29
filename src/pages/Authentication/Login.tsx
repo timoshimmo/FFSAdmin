@@ -16,7 +16,7 @@ import { loginUser, socialLogin, resetLoginFlag } from "../../slices/thunks";
 
 import logoLight from "../../assets/images/logo-light.png";
 import logoFFSLight from "../../assets/images/ffs_top_logo_light.png";
-import logoFFSLight2 from "../../assets/images/ffs_top_logo_light2.png";
+import logoFFSLight2 from "../../assets/images/all_white_ffs_logo.png";
 import { createSelector } from 'reselect';
 //import images
 
@@ -104,7 +104,7 @@ const Login = (props: any) => {
                                             <img src={logoFFSLight2} alt="" height="80" />
                                         </Link>
                                     </div>
-                                    <p className="mt-3 fs-15 fw-medium">Future of Financial Services Admin</p>
+                                    <p className="mt-3 fs-15 fw-medium text-white">Future of Financial Services Admin</p>
                                 </div>
                             </Col>
                         </Row>

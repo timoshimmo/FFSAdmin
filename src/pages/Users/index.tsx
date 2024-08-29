@@ -3,10 +3,8 @@ import { Col, Container, Row, Spinner } from "reactstrap";
 import BreadCrumb from "Components/Common/BreadCrumb";
 import TableContainer from "../../Components/Common/TableContainerReactTable";
 import axios from "axios";
-import ReactTable from "react-table";
-import { CSVLink } from "react-csv";
 
-const DashboardEcommerce = () => {
+const Users = () => {
 
   document.title = "Home | FFS Admin";
 
@@ -30,7 +28,7 @@ const DashboardEcommerce = () => {
 
     axios.get('https://api.futureoffinancialservices.org/api/get-registered-users')
     .then(response => {
-        console.log(response);
+       // console.log(response);
         const result: any = response;
         setUsersList(result);
         setLoading(false);
@@ -49,6 +47,31 @@ const DashboardEcommerce = () => {
   })
 };
 
+const handleDelete = () => {
+
+  const obj = {
+    id: 1
+  }
+  axios.post('http://localhost:8000/api/delete-user', obj)
+  .then(response => {
+      console.log(response);
+      
+  })
+  .catch((error) => {
+      if (error.response) {
+          console.log(error.response.data.message);
+          setErrorMsg(error.response.data.message);
+          console.log("server error");
+      } else if (error.request) {
+          console.log("network error");
+      } else {
+          console.log(error);
+      }
+      
+})
+
+}
+
 const columns = useMemo (
   () => [
 
@@ -63,8 +86,13 @@ const columns = useMemo (
       enableColumnFilter: false,
     },
     {
-      header: "Name",
-      accessorKey: "name",
+      header: "First Name",
+      accessorKey: "firstname",
+      enableColumnFilter: false,
+    },
+    {
+      header: "Last Name",
+      accessorKey: "lastname",
       enableColumnFilter: false,
     },
     {
@@ -73,17 +101,17 @@ const columns = useMemo (
       enableColumnFilter: false,
     },
     {
-      header: "Phone",
+      header: "Phone Number",
       accessorKey: "phone",
       enableColumnFilter: false,
     },
     {
-      header: "Company",
+      header: "Company Name",
       accessorKey: "company_name",
       enableColumnFilter: false,
     },
     {
-      header: "Title",
+      header: "Job Title",
       accessorKey: "title",
       enableColumnFilter: false,
     },
@@ -102,11 +130,11 @@ const columns = useMemo (
                   <TableContainer
                     columns={(columns || [])}
                     data={(userList || [])}
-                    isPagination={userList.length > 5}
+                    isPagination={userList.length > 20}
                     isGlobalFilter={true}
                     iscustomPageSize={false}
                     isBordered={false}
-                    customPageSize={5}
+                    customPageSize={20}
                     SearchPlaceholder='Search...'
                   /> 
                  
@@ -122,4 +150,4 @@ const columns = useMemo (
   );
 };
 
-export default DashboardEcommerce;
+export default Users;
