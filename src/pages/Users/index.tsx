@@ -19,10 +19,6 @@ const Users = () => {
 
   const handleGetUsers = () => {
     setLoading(true);
-   /* setTimeout(() => {
-        setSuccessful(true);
-        setLoading(false);
-    }, 5000); */
 
     //https://api.futureoffinancialservices.org/api/
     //http://localhost:8000/api/
