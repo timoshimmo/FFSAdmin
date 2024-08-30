@@ -143,7 +143,7 @@ const Navdata = () => {
         },
         {
             id: "users",
-            label: "Users",
+            label: "FFS Registration",
             icon: "ri-dashboard-2-line",
             link: "/users",
            
