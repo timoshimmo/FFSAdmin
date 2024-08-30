@@ -23,7 +23,7 @@ const ProfileDropdown = () => {
         console.log("AUTH USER: ", adminUser);
         if (adminUser) {
             const obj: any = JSON.parse(adminUser);
-            setUserName(obj.username === undefined ? "FFSAdmin" : obj.username
+            setUserName(obj.username === undefined ? "ffsadmin" : obj.username
             );
         }
     }, [userName, user]);
