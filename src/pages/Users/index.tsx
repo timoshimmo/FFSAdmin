@@ -3,6 +3,7 @@ import { Col, Container, Row, Spinner } from "reactstrap";
 import BreadCrumb from "Components/Common/BreadCrumb";
 import TableContainer from "../../Components/Common/TableContainerReactTable";
 import axios from "axios";
+import moment from 'moment';
 
 const Users = () => {
 
@@ -71,6 +72,7 @@ const handleDelete = () => {
 })
 
 }
+//<span>{moment(cell.getValue()).format("DD-MM-YY HH:mm")}</span>
 
 const columns = useMemo (
   () => [
@@ -113,6 +115,16 @@ const columns = useMemo (
     {
       header: "Job Title",
       accessorKey: "title",
+      enableColumnFilter: false,
+    },
+    {
+      header: "Created",
+      accessorKey: "created_at",
+      cell: (cell: any) => {
+        return (
+          <span>{moment(cell.getValue()).format("DD-MM-YY, hh:mm A")}</span>
+        );
+      },
       enableColumnFilter: false,
     },
   ],

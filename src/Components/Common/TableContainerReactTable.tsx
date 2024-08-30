@@ -172,7 +172,7 @@ const TableContainer = ({
                 </div>
               </Col>
               <Col sm={5} className="d-flex justify-content-end align-items-center">
-                <CSVLink className="px-4 py-2 text-white" data={data} style={{ backgroundColor: '#33CC99', border: '1px solid #33CC99', borderRadius: '25px' }}>Export Data</CSVLink>
+                <CSVLink className="px-4 py-2 text-white" filename="registered_users.csv" data={data} style={{ backgroundColor: '#33CC99', border: '1px solid #33CC99', borderRadius: '25px' }}>Export Data</CSVLink>
               </Col>
             </Row>
           </form>

@@ -11,6 +11,8 @@ import withRouter from "../../Components/Common/withRouter";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
+import axios from "axios";
+
 // actions
 import { loginUser, socialLogin, resetLoginFlag } from "../../slices/thunks";
 
@@ -40,6 +42,8 @@ const Login = (props: any) => {
     const [userLogin, setUserLogin] = useState<any>([]);
     const [passwordShow, setPasswordShow] = useState<boolean>(false);
     const [loader, setLoader] = useState<boolean>(false);
+
+    const [errMsg, setErrMsg] = useState({});
 
     useEffect(() => {
         if (user && user) {
@@ -73,6 +77,39 @@ const Login = (props: any) => {
     const signIn = (type: any) => {
         dispatch(socialLogin(type, props.router.navigate));
     };
+
+    const handleLogin = (values: any) => {
+
+        setLoader(true);
+        
+        axios.post('https://api.futureoffinancialservices.org/api/login', values)
+        .then(response => {
+            console.log(response);
+            setLoader(false);
+            if(response.data.success) {
+                sessionStorage.setItem("adminUser", JSON.stringify(response.data.user));
+                props.router.navigate('/users');
+            }
+            else {
+                console.log("SERVER ERROR: ", response);
+            }
+            
+        })
+        .catch((error) => {
+            if (error.response) {
+                console.log(error.response.data.message);
+                setErrMsg(error.response.data.message);
+                setLoader(false);
+                console.log("server error");
+            } else if (error.request) {
+                console.log("network error");
+            } else {
+                console.log(error);
+            }
+            
+        })
+
+    }
 
 
     //for facebook and google authentication
