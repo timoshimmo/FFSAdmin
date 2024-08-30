@@ -3,31 +3,31 @@ import { Col, Container, Row, Spinner } from "reactstrap";
 import BreadCrumb from "Components/Common/BreadCrumb";
 import TableContainer from "../../Components/Common/TableContainerReactTable";
 import axios from "axios";
-//import moment from 'moment';
+import moment from 'moment';
 
-const Sponsors = () => {
+const Partners = () => {
 
-  document.title = "Sponsors | FFS Admin";
+  document.title = "Home | FFS Admin";
 
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  const [userList, setSponsorsList] = useState([]);
+  const [userList, setPartnersList] = useState([]);
 
   useEffect(() => {
-    handleGetSponsors();
-  }, [setSponsorsList]);  
+    handleGetPartners();
+  }, [setPartnersList]);  
 
-  const handleGetSponsors = () => {
+  const handleGetPartners = () => {
     setLoading(true);
 
     //https://api.futureoffinancialservices.org/api/
     //http://localhost:8000/api/
 
-    axios.get('https://api.futureoffinancialservices.org/api/get-sponsors')
+    axios.get('https://api.futureoffinancialservices.org/api/get-partners')
     .then(response => {
        // console.log(response);
         const result: any = response;
-        setSponsorsList(result);
+        setPartnersList(result);
         setLoading(false);
     })
     .catch((error) => {
@@ -104,7 +104,6 @@ const columns = useMemo (
       header: "Company Name",
       accessorKey: "company_name",
       enableColumnFilter: false,
-      size: '600px',
     },
     {
       header: "Job Title",
@@ -114,6 +113,11 @@ const columns = useMemo (
     {
       header: "Company Website",
       accessorKey: "company_website_url",
+      enableColumnFilter: false,
+    },
+    {
+      header: "Proposed Benefits",
+      accessorKey: "proposed_partnership_benefits",
       enableColumnFilter: false,
     },
     {
@@ -129,23 +133,28 @@ const columns = useMemo (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <BreadCrumb title="Sponsors" pageTitle="Dashboard" />
+          <BreadCrumb title="Partners" pageTitle="Dashboard" />
           <Row className='mt-4 mb-5 px-2'>
             <Col lg={12}>
               {userList.length > 0 && !loading ?
-                  <TableContainer
-                    columns={(columns || [])}
-                    data={(userList || [])}
-                    isPagination={userList.length > 20}
-                    isGlobalFilter={true}
-                    iscustomPageSize={false}
-                    isBordered={false}
-                    customPageSize={20}
-                    SearchPlaceholder='Search...'
-                  /> 
-                 
-                : 
-                <div className="text-center"><Spinner animation="border" variant="primary" /></div>
+                  userList.length > 0 ?
+                      <TableContainer
+                        columns={(columns || [])}
+                        data={(userList || [])}
+                        isPagination={userList.length > 20}
+                        isGlobalFilter={true}
+                        iscustomPageSize={false}
+                        isBordered={false}
+                        customPageSize={20}
+                        SearchPlaceholder='Search...'
+                      /> 
+                      :
+                      <div className="d-flex flex-column align-items-center w-100 py-4">
+                        <i className={"ri-alert-fill display-1 text-xl text-warning"}></i>
+                        <p className='text-muted'>No Data Found</p>
+                      </div>
+                  : 
+                  <div className="text-center"><Spinner animation="border" variant="primary" /></div>
               }
     
             </Col>
@@ -156,4 +165,4 @@ const columns = useMemo (
   );
 };
 
-export default Sponsors;
+export default Partners;

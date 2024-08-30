@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { CardBody, Col, Row, Table } from "reactstrap";
 import { Link } from "react-router-dom";
-import { CSVDownload, CSVLink } from "react-csv";
+import { CSVLink } from "react-csv";
 
 import {
   Column,
@@ -180,7 +180,7 @@ const TableContainer = ({
       </Row>}
 
 
-      <div className={divClass}>
+      <div className={divClass + 'table-responsive'}>
         <Table hover className={tableClass}>
           <thead className={theadClass}>
             {getHeaderGroups().map((headerGroup: any) => (

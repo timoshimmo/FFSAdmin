@@ -3,13 +3,17 @@ import { Navigate } from "react-router-dom";
 
 //Dashboard
 import Users from "../pages/Users";
+import Sponsors from "../pages/Sponsors";
+import Partners from "pages/Partners";
 
 //AuthenticationInner pages
+/*
 import Basic404 from '../pages/AuthenticationInner/Errors/Basic404';
 import Cover404 from '../pages/AuthenticationInner/Errors/Cover404';
 import Alt404 from '../pages/AuthenticationInner/Errors/Alt404';
 import Error500 from '../pages/AuthenticationInner/Errors/Error500';
 import Offlinepage from "../pages/AuthenticationInner/Errors/Offlinepage";
+*/
 
 
 
@@ -29,7 +33,9 @@ const authProtectedRoutes = [
   { path: "/users", component: <Users /> },
   { path: "/index", component: <Users /> },
 
-
+  { path: "/sponsors", component: <Sponsors /> },
+  { path: "/partners", component: <Partners /> },
+  
 
   //User Profile
   { path: "/profile", component: <UserProfile /> },
@@ -53,12 +59,15 @@ const publicRoutes : any= [
 
   //AuthenticationInner pages
 
+  /*
   { path: "/auth-404-basic", component: <Basic404 /> },
   { path: "/auth-404-cover", component: <Cover404 /> },
   { path: "/auth-404-alt", component: <Alt404 /> },
   { path: "/auth-500", component: <Error500 /> },
 
   { path: "/auth-offline", component: <Offlinepage /> },
+
+  */
 
 ];
 

@@ -3,11 +3,11 @@ import { Col, Container, Row, Spinner } from "reactstrap";
 import BreadCrumb from "Components/Common/BreadCrumb";
 import TableContainer from "../../Components/Common/TableContainerReactTable";
 import axios from "axios";
-import moment from 'moment';
+//import moment from 'moment';
 
 const Users = () => {
 
-  document.title = "Home | FFS Admin";
+  document.title = "Registered Users | FFS Admin";
 
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -25,7 +25,7 @@ const Users = () => {
 
     axios.get('https://api.futureoffinancialservices.org/api/get-registered-users')
     .then(response => {
-       // console.log(response);
+        //console.log(response);
         const result: any = response;
         setUsersList(result);
         setLoading(false);
@@ -69,20 +69,18 @@ const handleDelete = () => {
 
 }
 //<span>{moment(cell.getValue()).format("DD-MM-YY HH:mm")}</span>
+/*
+
+ cell: (cell: any) => {
+        return (
+          <span>{moment(cell.getValue()).format("DD-MM-YY, hh:mm A")}</span>
+        );
+      },
+*/
 
 const columns = useMemo (
   () => [
 
-    {
-      header: "ID",
-      cell: (cell: any) => {
-        return (
-          <span className="fw-semibold">{cell.getValue()}</span>
-        );
-      },
-      accessorKey: "id",
-      enableColumnFilter: false,
-    },
     {
       header: "First Name",
       accessorKey: "firstname",
@@ -116,11 +114,6 @@ const columns = useMemo (
     {
       header: "Created",
       accessorKey: "created_at",
-      cell: (cell: any) => {
-        return (
-          <span>{moment(cell.getValue()).format("DD-MM-YY, hh:mm A")}</span>
-        );
-      },
       enableColumnFilter: false,
     },
   ],

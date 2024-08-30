@@ -5,29 +5,29 @@ import TableContainer from "../../Components/Common/TableContainerReactTable";
 import axios from "axios";
 //import moment from 'moment';
 
-const Sponsors = () => {
+const Users = () => {
 
-  document.title = "Sponsors | FFS Admin";
+  document.title = "Registered Users | FFS Admin";
 
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
-  const [userList, setSponsorsList] = useState([]);
+  const [userList, setUsersList] = useState([]);
 
   useEffect(() => {
-    handleGetSponsors();
-  }, [setSponsorsList]);  
+    handleGetUsers();
+  }, [setUsersList]);  
 
-  const handleGetSponsors = () => {
+  const handleGetUsers = () => {
     setLoading(true);
 
     //https://api.futureoffinancialservices.org/api/
     //http://localhost:8000/api/
 
-    axios.get('https://api.futureoffinancialservices.org/api/get-sponsors')
+    axios.get('http://localhost:8000/api/get-registered-users')
     .then(response => {
-       // console.log(response);
+        console.log(response);
         const result: any = response;
-        setSponsorsList(result);
+        setUsersList(result);
         setLoading(false);
     })
     .catch((error) => {
@@ -80,6 +80,7 @@ const handleDelete = () => {
 
 const columns = useMemo (
   () => [
+
     {
       header: "First Name",
       accessorKey: "firstname",
@@ -104,16 +105,10 @@ const columns = useMemo (
       header: "Company Name",
       accessorKey: "company_name",
       enableColumnFilter: false,
-      size: '600px',
     },
     {
       header: "Job Title",
       accessorKey: "title",
-      enableColumnFilter: false,
-    },
-    {
-      header: "Company Website",
-      accessorKey: "company_website_url",
       enableColumnFilter: false,
     },
     {
@@ -129,7 +124,7 @@ const columns = useMemo (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <BreadCrumb title="Sponsors" pageTitle="Dashboard" />
+          <BreadCrumb title="Users" pageTitle="Dashboard" />
           <Row className='mt-4 mb-5 px-2'>
             <Col lg={12}>
               {userList.length > 0 && !loading ?
@@ -156,4 +151,4 @@ const columns = useMemo (
   );
 };
 
-export default Sponsors;
+export default Users;
