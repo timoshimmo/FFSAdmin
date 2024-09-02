@@ -5,6 +5,7 @@ import { Navigate } from "react-router-dom";
 import Users from "../pages/Users";
 import Sponsors from "../pages/Sponsors";
 import Partners from "pages/Partners";
+import Subscribers from "pages/Subscribers";
 
 //AuthenticationInner pages
 /*
@@ -31,10 +32,12 @@ import UserProfile from "../pages/Authentication/user-profile";
 
 const authProtectedRoutes = [
   { path: "/users", component: <Users /> },
-  { path: "/index", component: <Users /> },
+  
 
   { path: "/sponsors", component: <Sponsors /> },
   { path: "/partners", component: <Partners /> },
+  { path: "/subscribers", component: <Subscribers /> },
+  
   
 
   //User Profile
@@ -45,9 +48,9 @@ const authProtectedRoutes = [
   {
     path: "/",
     exact: true,
-    component: <Navigate to="/users" />,
+    component: <Navigate to="/login" />,
   },
-  { path: "*", component: <Navigate to="/users" /> },
+  { path: "*", component: <Navigate to="/login" /> },
 ];
 
 const publicRoutes : any= [

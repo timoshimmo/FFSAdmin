@@ -5,7 +5,7 @@ import ParticlesAuth from "../AuthenticationInner/ParticlesAuth";
 //redux
 import { useSelector, useDispatch } from "react-redux";
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import withRouter from "../../Components/Common/withRouter";
 // Formik validation
 import * as Yup from "yup";
@@ -23,6 +23,8 @@ import { createSelector } from 'reselect';
 //import images
 
 const Login = (props: any) => {
+
+    const navigate = useNavigate();
     const dispatch = useDispatch<any>();
     const selectLayoutState = (state: any) => state;
     const loginpageData = createSelector(
@@ -43,7 +45,7 @@ const Login = (props: any) => {
     const [passwordShow, setPasswordShow] = useState<boolean>(false);
     const [loader, setLoader] = useState<boolean>(false);
 
-    const [errMsg, setErrMsg] = useState({});
+    const [errMsg, setErrMsg] = useState('');
 
     useEffect(() => {
         if (user && user) {
@@ -69,8 +71,10 @@ const Login = (props: any) => {
             password: Yup.string().required("Please Enter Your Password"),
         }),
         onSubmit: (values) => {
-            dispatch(loginUser(values, props.router.navigate));
-            setLoader(true);
+           // dispatch(loginUser(values, props.router.navigate));
+          //  setLoader(true);
+
+          handleLogin(values);
         }
     });
 
@@ -84,16 +88,19 @@ const Login = (props: any) => {
         
         axios.post('https://api.futureoffinancialservices.org/api/login', values)
         .then(response => {
-            console.log(response);
             setLoader(false);
-            if(response.data.success) {
-                sessionStorage.setItem("adminUser", JSON.stringify(response.data.user));
-                props.router.navigate('/users');
+            const result: any = response;
+            if(result.success) {
+                console.log(result.success);
+                sessionStorage.setItem("authUser", JSON.stringify(result.user));
+
+               // dispatch(loginUser(values, props.router.navigate));
+                navigate('/users');
             }
             else {
                 console.log("SERVER ERROR: ", response);
+                 setErrMsg(result.errors);
             }
-            
         })
         .catch((error) => {
             if (error.response) {
@@ -110,13 +117,6 @@ const Login = (props: any) => {
         })
 
     }
-
-
-    //for facebook and google authentication
-    const socialResponse = (type: any) => {
-        signIn(type);
-    };
-
 
     useEffect(() => {
         if (errorMsg) {
@@ -218,13 +218,21 @@ const Login = (props: any) => {
                                                 */}
 
                                                 <div className="mt-4">
-                                                <Button color="success"
+                                                    <Button color="success"
                                                         disabled={loader && true}
                                                         className="btn btn-success w-100" type="submit">
                                                         {loader && <Spinner size="sm" className='me-2'> Loading... </Spinner>}
                                                         Sign In
                                                     </Button>
                                                 </div>
+
+                                                {
+                                                    errMsg &&
+                                                    <div className='w-100 px-2 my-3'>
+                                                        <span className='fs-11' style={{ color: 'red' }}>{errMsg}</span>
+                                                    </div>
+                                                }
+                                                
 
                                                 {/*
 

@@ -17,14 +17,15 @@ const ProfileDropdown = () => {
     const user = useSelector(profiledropdownData);
 
     const [userName, setUserName] = useState("Admin");
+    const [userEmail, setUserEmail] = useState("");
 
     useEffect(() => {
-        const adminUser: any = sessionStorage.getItem("adminUser");
-        console.log("AUTH USER: ", adminUser);
+        const adminUser: any = sessionStorage.getItem("authUser");
+        //console.log("AUTH USER: ", adminUser);
         if (adminUser) {
             const obj: any = JSON.parse(adminUser);
-            setUserName(obj.username === undefined ? "ffsadmin" : obj.username
-            );
+            setUserName(obj.username === undefined ? "ffsadmin" : obj.username);
+            setUserEmail(obj.email);
         }
     }, [userName, user]);
 
@@ -41,8 +42,8 @@ const ProfileDropdown = () => {
                         <img className="rounded-circle header-profile-user" src={avatar1}
                             alt="Header Avatar" />
                         <span className="text-start ms-xl-2">
-                            <span className="d-none d-xl-inline-block ms-1 fw-medium user-name-text">ffsadmin</span>
-                            <span className="d-none d-xl-block ms-1 fs-13 text-muted user-name-sub-text">fofinservices@gmail.com</span>
+                            <span className="d-none d-xl-inline-block ms-1 fw-medium user-name-text">{userName}</span>
+                            <span className="d-none d-xl-block ms-1 fs-13 text-muted user-name-sub-text">{userEmail}</span>
                         </span>
                     </span>
                 </DropdownToggle>

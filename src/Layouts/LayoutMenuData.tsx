@@ -162,6 +162,13 @@ const Navdata = () => {
             link: "/partners",
            
         },
+        {
+            id: "subscribers",
+            label: "Subscibers",
+            icon: "ri-mail-send-line",
+            link: "/subscribers",
+           
+        },
         
     ];
     return <React.Fragment>{menuItems}</React.Fragment>;

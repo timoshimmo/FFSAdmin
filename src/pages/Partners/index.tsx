@@ -136,7 +136,7 @@ const columns = useMemo (
           <BreadCrumb title="Partners" pageTitle="Dashboard" />
           <Row className='mt-4 mb-5 px-2'>
             <Col lg={12}>
-              {userList.length > 0 && !loading ?
+              {!loading ?
                   userList.length > 0 ?
                       <TableContainer
                         columns={(columns || [])}

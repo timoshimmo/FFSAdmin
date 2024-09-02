@@ -25,7 +25,7 @@ const Sponsors = () => {
 
     axios.get('https://api.futureoffinancialservices.org/api/get-sponsors')
     .then(response => {
-       // console.log(response);
+        console.log(response);
         const result: any = response;
         setSponsorsList(result);
         setLoading(false);
@@ -81,6 +81,11 @@ const handleDelete = () => {
 const columns = useMemo (
   () => [
     {
+      header: "ID",
+      accessorKey: "id",
+      enableColumnFilter: false,
+    },
+    {
       header: "First Name",
       accessorKey: "firstname",
       enableColumnFilter: false,
@@ -104,7 +109,6 @@ const columns = useMemo (
       header: "Company Name",
       accessorKey: "company_name",
       enableColumnFilter: false,
-      size: '600px',
     },
     {
       header: "Job Title",
@@ -132,22 +136,27 @@ const columns = useMemo (
           <BreadCrumb title="Sponsors" pageTitle="Dashboard" />
           <Row className='mt-4 mb-5 px-2'>
             <Col lg={12}>
-              {userList.length > 0 && !loading ?
-                  <TableContainer
-                    columns={(columns || [])}
-                    data={(userList || [])}
-                    isPagination={userList.length > 20}
-                    isGlobalFilter={true}
-                    iscustomPageSize={false}
-                    isBordered={false}
-                    customPageSize={20}
-                    SearchPlaceholder='Search...'
-                  /> 
-                 
+              {!loading ?
+                userList.length > 0 ?
+                    <TableContainer
+                      columns={(columns || [])}
+                      data={(userList || [])}
+                      isPagination={userList.length > 20}
+                      isGlobalFilter={true}
+                      iscustomPageSize={false}
+                      isBordered={false}
+                      customPageSize={20}
+                      divClass={'table-responsive'}
+                      SearchPlaceholder='Search...'
+                    /> 
+                    :
+                    <div className="d-flex flex-column align-items-center w-100 py-4">
+                      <i className={"ri-alert-fill display-1 text-xl text-warning"}></i>
+                      <p className='text-muted'>No Data Found</p>
+                    </div>
                 : 
                 <div className="text-center"><Spinner animation="border" variant="primary" /></div>
               }
-    
             </Col>
           </Row>
         </Container>

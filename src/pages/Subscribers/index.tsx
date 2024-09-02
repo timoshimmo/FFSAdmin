@@ -5,7 +5,7 @@ import TableContainer from "../../Components/Common/TableContainerReactTable";
 import axios from "axios";
 //import moment from 'moment';
 
-const Users = () => {
+const Subscribers = () => {
 
   document.title = "Registered Users | FFS Admin";
 
@@ -23,7 +23,7 @@ const Users = () => {
     //https://api.futureoffinancialservices.org/api/
     //http://localhost:8000/api/
 
-    axios.get('http://localhost:8000/api/get-registered-users')
+    axios.get('https://api.futureoffinancialservices.org/api/get-subscribers')
     .then(response => {
         console.log(response);
         const result: any = response;
@@ -82,33 +82,8 @@ const columns = useMemo (
   () => [
 
     {
-      header: "First Name",
-      accessorKey: "firstname",
-      enableColumnFilter: false,
-    },
-    {
-      header: "Last Name",
-      accessorKey: "lastname",
-      enableColumnFilter: false,
-    },
-    {
       header: "Email",
       accessorKey: "email",
-      enableColumnFilter: false,
-    },
-    {
-      header: "Phone Number",
-      accessorKey: "phone",
-      enableColumnFilter: false,
-    },
-    {
-      header: "Company Name",
-      accessorKey: "company_name",
-      enableColumnFilter: false,
-    },
-    {
-      header: "Job Title",
-      accessorKey: "title",
       enableColumnFilter: false,
     },
     {
@@ -124,10 +99,11 @@ const columns = useMemo (
     <React.Fragment>
       <div className="page-content">
         <Container fluid>
-          <BreadCrumb title="Users" pageTitle="Dashboard" />
+          <BreadCrumb title="Subscribers" pageTitle="Dashboard" />
           <Row className='mt-4 mb-5 px-2'>
             <Col lg={12}>
-              {userList.length > 0 && !loading ?
+              {!loading ?
+                userList.length > 0 ?
                   <TableContainer
                     columns={(columns || [])}
                     data={(userList || [])}
@@ -138,6 +114,11 @@ const columns = useMemo (
                     customPageSize={20}
                     SearchPlaceholder='Search...'
                   /> 
+                  :
+                  <div className="d-flex flex-column align-items-center w-100 py-4">
+                    <i className={"ri-alert-fill display-1 text-xl text-warning"}></i>
+                    <p className='text-muted'>No Data Found</p>
+                  </div>
                  
                 : 
                 <div className="text-center"><Spinner animation="border" variant="primary" /></div>
@@ -151,4 +132,4 @@ const columns = useMemo (
   );
 };
 
-export default Users;
+export default Subscribers;

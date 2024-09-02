@@ -121,6 +121,11 @@ const TableContainer = ({
 
   const table = useReactTable({
     columns,
+    defaultColumn: {
+      size: 100, //starting column size
+      minSize: 50, //enforced during column resizing
+      maxSize: 100, //enforced during column resizing
+    },
     data,
     filterFns: {
       fuzzy: fuzzyFilter,
@@ -180,7 +185,7 @@ const TableContainer = ({
       </Row>}
 
 
-      <div className={divClass + 'table-responsive'}>
+      <div className={divClass}>
         <Table hover className={tableClass}>
           <thead className={theadClass}>
             {getHeaderGroups().map((headerGroup: any) => (
