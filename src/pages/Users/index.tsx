@@ -48,7 +48,7 @@ const Users = () => {
 
     axios.get('https://api.futureoffinancialservices.org/api/get-registered-users')
     .then(response => {
-        console.log(response);
+        //console.log(response);
         const result: any = response;
         setUsersList(result);
         setLoading(false);
@@ -86,7 +86,7 @@ const updateStatus = (id: number, statusVal: string) => {
       setLoader(true);
       axios.post(`https://api.futureoffinancialservices.org/api/update-status/${id}`, { status: statusVal})
       .then(response => {
-          console.log(response);
+         // console.log(response);
           setLoader(false);
           setUpdateModal(false);
           handleGetUsers();
@@ -300,11 +300,11 @@ const columns = useMemo(
         <Container fluid>
           <BreadCrumb title="Users" pageTitle="Dashboard" />
           <Row className='mt-4 mb-5 px-2'>
-            {/* <Col lg={12}>
-              <Button onClick={handleUpdateAll}>
-                 Update All
+             {/* <Col lg={12}>
+              <Button onClick={handleDelete}>
+                 Delete
               </Button>
-  </Col> */}
+            </Col> */}
             <Col lg={12}>
               {!loading ?
                 userList.length > 0 ? 

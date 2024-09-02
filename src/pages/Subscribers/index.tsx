@@ -7,7 +7,7 @@ import axios from "axios";
 
 const Subscribers = () => {
 
-  document.title = "Registered Users | FFS Admin";
+  document.title = "Subscribers | FFS Admin";
 
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
@@ -43,40 +43,6 @@ const Subscribers = () => {
         setLoading(false);
   })
 };
-
-const handleDelete = () => {
-
-  const obj = {
-    id: 1
-  }
-  axios.post('http://localhost:8000/api/delete-user', obj)
-  .then(response => {
-      console.log(response);
-      
-  })
-  .catch((error) => {
-      if (error.response) {
-          console.log(error.response.data.message);
-          setErrorMsg(error.response.data.message);
-          console.log("server error");
-      } else if (error.request) {
-          console.log("network error");
-      } else {
-          console.log(error);
-      }
-      
-})
-
-}
-//<span>{moment(cell.getValue()).format("DD-MM-YY HH:mm")}</span>
-/*
-
- cell: (cell: any) => {
-        return (
-          <span>{moment(cell.getValue()).format("DD-MM-YY, hh:mm A")}</span>
-        );
-      },
-*/
 
 const columns = useMemo (
   () => [
