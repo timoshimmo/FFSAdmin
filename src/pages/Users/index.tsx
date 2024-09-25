@@ -77,16 +77,21 @@ const onClickUpdate = (task: any, curStatus: string, updateValue: string) => {
 
 const handleUpdate = () => {
   if (selectedRow) {
-    updateStatus(selectedRow.id, updateStatusVal);
+    updateStatus(selectedRow, updateStatusVal);
   }
 };
 
-const updateStatus = (id: number, statusVal: string) => {
+const updateStatus = (row: any, statusVal: string) => {
+
+    const obj = {
+      status: statusVal,
+      row: row
+    };
 
       setLoader(true);
-      axios.post(`https://api.futureoffinancialservices.org/api/update-status/${id}`, { status: statusVal})
+      axios.post(`https://api.futureoffinancialservices.org/api/update-status/${row?.id}`, obj)
       .then(response => {
-         // console.log(response);
+          console.log(response);
           setLoader(false);
           setUpdateModal(false);
           handleGetUsers();
@@ -315,7 +320,7 @@ const columns = useMemo(
                     isGlobalFilter={true}
                     iscustomPageSize={false}
                     isBordered={false}
-                    customPageSize={20}
+                    customPageSize={50}
                     SearchPlaceholder='Search...'
                   /> 
                   :
