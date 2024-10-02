@@ -4,7 +4,7 @@ import BreadCrumb from "Components/Common/BreadCrumb";
 import TableContainer from "../../Components/Common/TableContainerReactTable";
 import axios from "axios";
 import UpdateModal from "../../Components/Common/UpdateModal";
-//import moment from 'moment';
+import moment from 'moment';
 
 const Users = () => {
 
@@ -43,12 +43,12 @@ const Users = () => {
   const handleGetUsers = () => {
     setLoading(true);
 
-    //https://api.futureoffinancialservices.org/api/
-    //http://localhost:8000/api/
+    //https://api.futureoffinancialservices.org/api/get-registered-users
+    //http://localhost:8000/api/get-registered-users
 
-    axios.get('https://api.futureoffinancialservices.org/api/get-registered-users')
+    axios.get('https://dev-api.futureoffinancialservices.org/api/v1/register')
     .then(response => {
-        //console.log(response);
+        console.log(response);
         const result: any = response;
         setUsersList(result);
         setLoading(false);
@@ -172,13 +172,13 @@ const columns = useMemo(
   () => [
     {
       header: "First Name",
-      accessorKey: "firstname",
+      accessorKey: "first_name",
       enableColumnFilter: false,
       size: 100,
     },
     {
       header: "Last Name",
-      accessorKey: "lastname",
+      accessorKey: "last_name",
       enableColumnFilter: false,
       size: 100,
     },
@@ -191,7 +191,7 @@ const columns = useMemo(
     },
     {
       header: "Phone Number",
-      accessorKey: "phone",
+      accessorKey: "phonenumber",
       enableColumnFilter: false,
     },
     {
@@ -208,10 +208,15 @@ const columns = useMemo(
     },
     {
       header: "Created",
-      accessorKey: "created_at",
+      accessorKey: "createdAt",
       enableColumnFilter: false,
-      enableResizing: false, //disable resizing for just this column
-      size: 150
+      enableResizing: false, 
+      size: 150,
+      cell: (cell: any) => {
+        return (
+          <span>{moment(cell.getValue()).format("YYYY-MM-DD HH:mm:ss")}</span>
+        )
+      }
     },
     {
       header: "Status",

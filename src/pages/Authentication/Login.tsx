@@ -83,8 +83,18 @@ const Login = (props: any) => {
     };
 
     const handleLogin = (values: any) => {
-
+        
         setLoader(true);
+
+        setTimeout(() => {
+            //dispatch(resetLoginFlag());
+            sessionStorage.setItem("authUser", JSON.stringify({email: "fofinservices@gmail.com", username: "ffsadmin"}));
+            setLoader(false);
+            navigate('/users');
+            
+        }, 3000);
+
+        /*
         
         axios.post('https://api.futureoffinancialservices.org/api/login', values)
         .then(response => {
@@ -115,6 +125,8 @@ const Login = (props: any) => {
             }
             
         })
+
+        */
 
     }
 
