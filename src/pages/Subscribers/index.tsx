@@ -23,7 +23,7 @@ const Subscribers = () => {
     //https://api.futureoffinancialservices.org/api/
     //http://localhost:8000/api/
 
-    axios.get('https://api.futureoffinancialservices.org/api/get-subscribers')
+    axios.get('https://dev-api.futureoffinancialservices.org/api/v1/subscribe')
     .then(response => {
         console.log(response);
         const result: any = response;
@@ -54,7 +54,7 @@ const columns = useMemo (
     },
     {
       header: "Created",
-      accessorKey: "created_at",
+      accessorKey: "createdAt",
       enableColumnFilter: false,
     },
   ],
