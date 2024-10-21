@@ -22,8 +22,9 @@ const Partners = () => {
 
     //https://api.futureoffinancialservices.org/api/
     //http://localhost:8000/api/
+    //https://api.futureoffinancialservices.org/api/get-partners
 
-    axios.get('https://api.futureoffinancialservices.org/api/get-partners')
+    axios.get('https://dev-api.futureoffinancialservices.org/api/v1/partner')
     .then(response => {
         console.log(response);
         const result: any = response;
@@ -48,12 +49,12 @@ const columns = useMemo (
   () => [
     {
       header: "First Name",
-      accessorKey: "firstname",
+      accessorKey: "first_name",
       enableColumnFilter: false,
     },
     {
       header: "Last Name",
-      accessorKey: "lastname",
+      accessorKey: "last_name",
       enableColumnFilter: false,
     },
     {
@@ -63,7 +64,7 @@ const columns = useMemo (
     },
     {
       header: "Phone Number",
-      accessorKey: "phone",
+      accessorKey: "phonenumber",
       enableColumnFilter: false,
     },
     {
@@ -78,18 +79,25 @@ const columns = useMemo (
     },
     {
       header: "Company Website",
-      accessorKey: "company_website_url",
+      accessorKey: "website_url",
       enableColumnFilter: false,
     },
     {
       header: "Proposed Benefits",
-      accessorKey: "proposed_partnership_benefits",
+      accessorKey: "partnership_benefits",
       enableColumnFilter: false,
     },
     {
       header: "Created",
-      accessorKey: "created_at",
+      accessorKey: "createdAt",
       enableColumnFilter: false,
+      enableResizing: false, 
+      size: 150,
+      cell: (cell: any) => {
+        return (
+          <span>{moment(cell.getValue()).format("YYYY-MM-DD HH:mm:ss")}</span>
+        )
+      }
     },
   ],
   []

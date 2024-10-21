@@ -3,7 +3,7 @@ import { Col, Container, Row, Spinner } from "reactstrap";
 import BreadCrumb from "Components/Common/BreadCrumb";
 import TableContainer from "../../Components/Common/TableContainerReactTable";
 import axios from "axios";
-//import moment from 'moment';
+import moment from 'moment';
 
 const Sponsors = () => {
 
@@ -23,7 +23,7 @@ const Sponsors = () => {
     //https://api.futureoffinancialservices.org/api/
     //http://localhost:8000/api/
 
-    axios.get('https://api.futureoffinancialservices.org/api/get-sponsors')
+    axios.get('https://dev-api.futureoffinancialservices.org/api/v1/sponsor')
     .then(response => {
         console.log(response);
         const result: any = response;
@@ -49,12 +49,12 @@ const columns = useMemo (
   () => [
     {
       header: "First Name",
-      accessorKey: "firstname",
+      accessorKey: "first_name",
       enableColumnFilter: false,
     },
     {
       header: "Last Name",
-      accessorKey: "lastname",
+      accessorKey: "last_name",
       enableColumnFilter: false,
     },
     {
@@ -64,7 +64,7 @@ const columns = useMemo (
     },
     {
       header: "Phone Number",
-      accessorKey: "phone",
+      accessorKey: "phonenumber",
       enableColumnFilter: false,
     },
     {
@@ -79,13 +79,20 @@ const columns = useMemo (
     },
     {
       header: "Company Website",
-      accessorKey: "company_website_url",
+      accessorKey: "website_url",
       enableColumnFilter: false,
     },
     {
       header: "Created",
-      accessorKey: "created_at",
+      accessorKey: "createdAt",
       enableColumnFilter: false,
+      enableResizing: false, 
+      size: 150,
+      cell: (cell: any) => {
+        return (
+          <span>{moment(cell.getValue()).format("YYYY-MM-DD HH:mm:ss")}</span>
+        )
+      }
     },
   ],
   []

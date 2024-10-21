@@ -3,7 +3,7 @@ import { Col, Container, Row, Spinner } from "reactstrap";
 import BreadCrumb from "Components/Common/BreadCrumb";
 import TableContainer from "../../Components/Common/TableContainerReactTable";
 import axios from "axios";
-//import moment from 'moment';
+import moment from 'moment';
 
 const Subscribers = () => {
 
@@ -56,6 +56,13 @@ const columns = useMemo (
       header: "Created",
       accessorKey: "createdAt",
       enableColumnFilter: false,
+      enableResizing: false, 
+      size: 150,
+      cell: (cell: any) => {
+        return (
+          <span>{moment(cell.getValue()).format("YYYY-MM-DD HH:mm:ss")}</span>
+        )
+      }
     },
   ],
   []
