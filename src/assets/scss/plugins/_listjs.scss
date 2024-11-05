@@ -35,19 +35,17 @@
         display: inline-block;
     }
 }
-//$pagination-bg
-//$pagination-border-color
+
 .pagination-next,
 .pagination-prev {
-    color: $primary !important;
+    color: $primary;
     font-weight: $font-weight-medium;
     padding: $pagination-padding-y $pagination-padding-x;
     background-color: $pagination-bg;
-    border: $pagination-border-width solid $primary;
+    border: $pagination-border-width solid $pagination-border-color;
     border-radius: $border-radius; 
     &:hover {
-        //color: lighten($primary, 20%) !important;
-        color: $primary !important;
+        color: lighten($primary, 20%);
     }
 
     &.disabled {

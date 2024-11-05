@@ -5,8 +5,8 @@
 //
 // Global colors
 //
-//former $body-bg-dark -- #1a1d21
-$body-bg-dark:                                                      #141413;
+
+$body-bg-dark:                                                      #1a1d21;
 
 // scss-docs-start sass-dark-mode-vars
 // scss-docs-start theme-text-dark-variables
@@ -41,10 +41,10 @@ $danger-border-subtle-dark:                                         shade-color(
 $light-border-subtle-dark:                                          tint-color($body-bg-dark, 12%);
 $dark-border-subtle-dark:                                           tint-color($body-bg-dark, 15%);
 // scss-docs-end theme-border-subtle-dark-variables
-//former secondary-bg-dark --- #212529
+
 $body-color-dark:                                                   #ced4da;
 $body-secondary-color-dark:                                         #878a99;
-$body-secondary-bg-dark:                                            #141413;
+$body-secondary-bg-dark:                                            #212529;
 $body-tertiary-color-dark:                                          rgba($body-color-dark, .75);
 $body-tertiary-bg-dark:                                             tint-color($body-bg-dark, 7%);
 $body-emphasis-color-dark:                                          $white;

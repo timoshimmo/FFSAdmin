@@ -218,7 +218,7 @@ $value in $theme-colors {
   border-color: var(--#{$prefix}border-color) !important;
 }
 
-/* Change the white to any color 
+/* Change the white to any color */
 input:-webkit-autofill,
 input:-webkit-autofill:hover, 
 input:-webkit-autofill:focus, 
@@ -227,17 +227,6 @@ input:-webkit-autofill:active{
   background-color: var(--#{$prefix}input-bg) !important;
   color: var(--#{$prefix}body-color) !important;
   -webkit-text-fill-color: var(--#{$prefix}body-color) !important;
-}
-
-*/
-input:-webkit-autofill,
-input:-webkit-autofill:hover, 
-input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-  -webkit-box-shadow: none !important;
-  background-color: #FFFFFF !important;
-  color: #303030 !important;
-  -webkit-text-fill-color: #303030 !important;
 }
 
 //datatables
