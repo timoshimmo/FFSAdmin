@@ -9,6 +9,7 @@ a {
 
 .btn {
     box-shadow: $element-shadow;
+    border-radius: 60px;
 }
 
 :is(.btn.show, .btn:first-child:active, :not(.btn-check)+.btn:active) {

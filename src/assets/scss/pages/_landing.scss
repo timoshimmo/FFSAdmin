@@ -4,7 +4,7 @@
 
 .layout-wrapper {
     &.landing {
-        background-color: var(--#{$prefix}secondary-bg);
+        background-color: var(--#{$prefix}body-bg);
         font-size: 15px;
     }
 }
@@ -18,11 +18,11 @@
 // helper
 
 .section {
-    padding: 90px 0;
+    padding: 120px 60px 0;
     position: relative;
 
     @media (max-width:767.98px) {
-        padding: 50px 0;
+        padding: 50px 24px;
     }
 }
 
@@ -46,6 +46,7 @@
 .navbar-landing {
     padding: 10px 0px;
     transition: all 0.5s ease;
+    background-color: #141413;
     @media (max-width: 991.98px) {
         background-color: var(--#{$prefix}secondary-bg);
         box-shadow: 0 1px 16px -2px rgba(56, 65, 74, 0.15);
@@ -55,12 +56,12 @@
     .navbar-nav {
         .nav-item {
             .nav-link {
-                font-size: 16px;
+                font-size: 14px;
                 font-weight: $font-weight-medium;
                 transition: all 0.4s;
                 font-family: $font-family-secondary;
                 color: var(--#{$prefix}body-color);
-                padding: 14px;
+                padding: 7px 14px;
 
                 @media (max-width: 991.98px) {
                     padding: 8px 0px;
@@ -76,7 +77,8 @@
     }
 
     &.is-sticky {
-        background-color: var(--#{$prefix}secondary-bg);
+       /* background-color: var(--#{$prefix}secondary-bg); */
+        background-color: #141413;
         box-shadow: 0 1px 16px -2px rgba(56, 65, 74, 0.15);
     }
 }
@@ -95,7 +97,7 @@
     .navbar-nav {
         .nav-item {
             .nav-link {
-                color: rgba(var(--#{$prefix}white-rgb), 0.75);
+                color: rgba(var(--#{$prefix}white-rgb), 1);
             }
         }
     }
@@ -134,7 +136,7 @@
 }
 
 .bg-overlay-pattern {
-    background-image: url("../../images/landing/bg-pattern.png");
+   // background-image: url("../../images/landing/bg-pattern.png");
     background-color: transparent;
     background-position: center;
     background-size: cover;
@@ -216,15 +218,20 @@
     }
 }
 
+/*
+color: #778089;
+background-color: rgba($white, 0.05);
+*/
+
 .footer-social-link {
     .avatar-title {
-        color: #778089;
-        background-color: rgba($white, 0.05);
+        color: $primary;
+        background-color: rgba($white, 1);
         transition: all 0.3s ease;
 
         &:hover {
-            color: $white;
-            background-color: $primary;
+            color: $primary;
+            background-color: rgba($white, 0.8);
         }
     }
 }
