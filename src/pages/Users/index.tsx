@@ -45,7 +45,6 @@ const Users = () => {
 
     //https://api.futureoffinancialservices.org/api/get-registered-users
     //http://localhost:8000/api/get-registered-users
-    //https://dev-api.futureoffinancialservices.org/api/v1/
 
     axios.get('https://dev-api.futureoffinancialservices.org/api/v1/register')
     .then(response => {
@@ -84,29 +83,13 @@ const handleUpdate = () => {
 
 const updateStatus = (row: any, statusVal: string) => {
 
-  const obj = {
-    first_name: row.first_name,
-    last_name: row.last_name,
-    company_name: row.company_name,
-    title: row.title,
-    email: row.email,
-    phonenumber: row.phonenumber,
-    status: statusVal,
-    events: row.events
-  }
-
-  console.log(obj);
-
-   /* const obj = {
+    const obj = {
       status: statusVal,
       row: row
-    }; 
-    
-    http://api.futureoffinancialservices.org/api/update-status/${row?.id}`
-    */
+    };
 
       setLoader(true);
-      axios.put(`https://dev-api.futureoffinancialservices.org/api/v1/register/${row?.id}`, obj)
+      axios.post(`https://api.futureoffinancialservices.org/api/update-status/${row?.id}`, obj)
       .then(response => {
           console.log(response);
           setLoader(false);
@@ -240,11 +223,11 @@ const columns = useMemo(
       accessorKey: "status",
       cell: (cell: any) => {
         switch (cell.getValue()) {
-          case "REGISTERED":
+          case "registered":
             return (<span className="badge bg-info-subtle text-info text-capitalize"> {cell.getValue()}</span>);
-          case "PENDING":
+          case "pending":
             return (<span className="badge bg-warning-subtle  text-warning text-capitalize"> {cell.getValue()}</span>);
-          case "DECLINED":
+          case "declined":
               return (<span className="badge bg-danger-subtle  text-danger text-capitalize"> {cell.getValue()}</span>);
           default:
             return (<span className="badge bg-success-subtle  text-success text-capitalize"> {cell.getValue()}</span>);
@@ -275,7 +258,7 @@ const columns = useMemo(
                   <DropdownItem className='p-0'>
                       <Button color='transparent'
                             className="btn text-success w-100" type="button"
-                            onClick={() => { const rowData = cell.row.original; onClickUpdate(rowData, "approve", "APPROVED"); }}>
+                            onClick={() => { const rowData = cell.row.original; onClickUpdate(rowData, "approve", "approved"); }}>
                             Approve
                       </Button>
                   </DropdownItem>
@@ -283,7 +266,7 @@ const columns = useMemo(
                   <DropdownItem className='p-0'>
                       <Button color='transparent'
                           className="btn text-danger w-100" type="button"
-                          onClick={() => { const rowData = cell.row.original; onClickUpdate(rowData, "decline", "DECLINED"); }}>
+                          onClick={() => { const rowData = cell.row.original; onClickUpdate(rowData, "decline", "declined"); }}>
                           Decline
                       </Button>
                   </DropdownItem>
@@ -291,7 +274,7 @@ const columns = useMemo(
                   <DropdownItem className='p-0'>
                       <Button color='transparent'
                           className="btn text-info rounded-0 w-100" type="button"
-                          onClick={() => { const rowData = cell.row.original; onClickUpdate(rowData, "set the status to pending for", "PENDING"); }}>
+                          onClick={() => { const rowData = cell.row.original; onClickUpdate(rowData, "set the status to pending for", "pending"); }}>
                           Tentative
                       </Button>
                   </DropdownItem>
@@ -299,7 +282,7 @@ const columns = useMemo(
                   <DropdownItem className='p-0'>
                       <Button color='transparent'
                           className="btn text-warning w-100" type="button"
-                          onClick={() => { const rowData = cell.row.original; onClickUpdate(rowData, "reset the status of", "REGISTERED"); }}>
+                          onClick={() => { const rowData = cell.row.original; onClickUpdate(rowData, "reset the status of", "registered"); }}>
                           Reset
                       </Button>
                   </DropdownItem>

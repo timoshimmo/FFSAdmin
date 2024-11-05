@@ -6,7 +6,6 @@ import Users from "../pages/Users";
 import Sponsors from "../pages/Sponsors";
 import Partners from "pages/Partners";
 import Subscribers from "pages/Subscribers";
-import ContactUs from "pages/ContactUs";
 
 //AuthenticationInner pages
 /*
@@ -38,7 +37,8 @@ const authProtectedRoutes = [
   { path: "/sponsors", component: <Sponsors /> },
   { path: "/partners", component: <Partners /> },
   { path: "/subscribers", component: <Subscribers /> },
-  { path: "/contacts", component: <ContactUs /> },
+  
+  
 
   //User Profile
   { path: "/profile", component: <UserProfile /> },

@@ -1,4 +1,4 @@
-.la,
+/*.la,
 .las,
 .lar,
 .lal,
@@ -185,6 +185,8 @@
 
 /* Font Awesome uses the Unicode Private Use Area (PUA) to ensure screen
 readers do not read off random characters that represent icons */
+
+/*
 .la-500px:before {
   content: "\f26e"; }
 
@@ -6580,3 +6582,6 @@ readers do not read off random characters that represent icons */
 .la.la-spotify {
   font-family: 'Line Awesome Brands';
   font-weight: 400; }
+
+
+  */

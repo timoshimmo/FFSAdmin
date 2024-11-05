@@ -1,7 +1,8 @@
 // Variables
 
 //Google Font
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+//@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@100;200;300;400;500;600;700&display=swap');
 
 //
 // custom-variables
@@ -13,8 +14,8 @@ $variable-prefix:             vz-; // Deprecated in v5.2.0 for the shorter `$pre
 $prefix:                      $variable-prefix;
 
 // Font Family
-$font-family-primary:                             'IBM Plex Sans', sans-serif;
-$font-family-secondary:                           'IBM Plex Sans', sans-serif;
+$font-family-primary:                             'Montserrat', 'IBM Plex Sans', sans-serif;
+$font-family-secondary:                           'Montserrat', 'IBM Plex Sans', sans-serif;
 
 //custom variables managed by
 //light mode
@@ -45,6 +46,7 @@ $gray-600: #878a99;
 $gray-700: #495057;
 $gray-800: #343a40;
 $gray-900: #212529;
+$dark-bg-custom:  #141413;
 $black:    #000;
 
 // fusv-disable
@@ -69,7 +71,7 @@ $indigo:     #405189;
 $purple:     #7084c7;
 $pink:       #f672a7;
 $red:        #fa896b;
-$orange:     #f1963b;
+$orange:     #FFB615;
 $yellow:     #f7b84b;
 $green:      #33CC99;
 $teal:       #02a8b5;
@@ -325,16 +327,16 @@ $cyans: (
 
 // scss-docs-start theme-color-variables
 $primary:       $green;
-$secondary:     $purple;
+$secondary:     $orange;
 $success:       $green;
 $info:          $cyan;
 $warning:       $yellow;
 $danger:        $red;
 $light:         $gray-100;
-$dark:          $gray-900;
+$dark:          $dark-bg-custom;
 
 
-
+//$gray-900;
 
 // scss-docs-end theme-color-variables
 
@@ -827,9 +829,9 @@ $table-variants: (
 
 // scss-docs-start input-btn-variables
 $input-btn-padding-y:         .5rem;
-$input-btn-padding-x:         .9rem;
+$input-btn-padding-x:         2rem;
 $input-btn-font-family:       null;
-$input-btn-font-size:         $font-size-base;
+$input-btn-font-size:         $font-size-sm;
 $input-btn-line-height:       $line-height-base;
 
 $input-btn-focus-width:         $focus-ring-width;
@@ -886,6 +888,7 @@ $btn-link-disabled-color:     $gray-600;
 $btn-link-focus-shadow-rgb:   to-rgb(mix(color-contrast($link-color), $link-color, 15%));
 
 // Allows for customizing button radius independently from global border radius
+//$btn-border-radius:           var(--#{$prefix}border-radius);
 $btn-border-radius:           var(--#{$prefix}border-radius);
 $btn-border-radius-sm:        var(--#{$prefix}border-radius-sm);
 $btn-border-radius-lg:        var(--#{$prefix}border-radius-lg);
@@ -957,7 +960,8 @@ $input-focus-color:                     $input-color;
 $input-focus-width:                     $input-btn-focus-width;
 $input-focus-box-shadow:                $input-btn-focus-box-shadow;
 
-$input-placeholder-color:               var(--#{$prefix}secondary-color);
+//$input-placeholder-color:               var(--#{$prefix}secondary-color);
+$input-placeholder-color:               #303030;
 $input-plaintext-color:                 var(--#{$prefix}body-color);
 
 $input-height-border:                   calc(#{$input-border-width} * 2); // stylelint-disable-line function-disallowed-list

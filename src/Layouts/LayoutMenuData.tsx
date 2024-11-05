@@ -163,13 +163,6 @@ const Navdata = () => {
            
         },
         {
-            id: "contacts",
-            label: "Contacts",
-            icon: "ri-questionnaire-line",
-            link: "/contacts",
-           
-        },
-        {
             id: "subscribers",
             label: "Subscibers",
             icon: "ri-mail-send-line",
